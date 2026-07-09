@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekayasa Perangkat Lunak - PPLG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(30, 41, 59, 0.4);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --purple: #a855f7;
+            --cyan: #06b6d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--purple));
+            margin: 12px auto 0;
+            border-radius: 10px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, var(--bg-dark) 70%);
+            padding: 100px 20px;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #fff 30%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero .tagline {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            backdrop-filter: blur(5px);
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            animation: pulse-glow 3s infinite;
+        }
+
+        /* --- INTRO & PELUANG KARIR --- */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1.2fr;
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+
+        .intro-card, .career-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .intro-card h3, .career-card h3 {
+            font-size: 2rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .intro-card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .career-card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .career-card li {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .career-card li:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            transform: translateX(10px);
+            color: var(--cyan);
+        }
+
+        /* --- FASE BELAJAR --- */
+        .fase-section {
+            margin-bottom: 70px;
+        }
+
+        .fase-header {
+            background: linear-gradient(90deg, var(--primary), #1d4ed8);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .fase-header.fase-f {
+            background: linear-gradient(90deg, #6d28d9, var(--purple));
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);
+        }
+
+        .fase-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .fase-header span {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .subject-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            border-top: 4px solid var(--primary);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fase-f-grid .subject-card {
+            border-top-color: var(--purple);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-top-color: var(--cyan);
+            background: rgba(30, 41, 59, 0.7);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .subject-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        .subject-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .subject-card:hover h4 {
+            color: var(--cyan);
+        }
+
+        /* --- EKOSISTEM PENDUKUNG --- */
+        .ekosistem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .eko-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .eko-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.3);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .eko-card h3 {
+            font-size: 1.3rem;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            color: var(--cyan);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .eko-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- NAVIGATION BUTTONS --- */
+        .container-tombol {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .btn-connect {
+            background: linear-gradient(90deg, var(--primary), var(--purple));
+            color: #fff;
+            padding: 16px 60px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-connect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-home-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--text-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home-fixed:hover {
+            background: var(--cyan);
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+        }
+
+        /* --- FOOTER BANNER --- */
+        .footer-banner {
+            background: #05070c;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border-card);
+        }
+
+        .footer-banner p {
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .intro-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.2rem; }
+            .fase-header { flex-direction: column; text-align: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container" data-aos="zoom-in" data-aos-duration="1000">
+            <h1>&lt; PPLG /&gt;</h1>
+            <p class="subtitle">Pengembangan Perangkat Lunak dan Gim</p>
+            <div class="tagline">BELAJAR • BERKARYA • BERINOVASI • BERKOLABORASI</div>
+        }
+    </header>
+
+    <main class="container">
+
+        <section class="intro-grid">
+            <div class="intro-card" data-aos="fade-right" data-aos-duration="1000">
+                <h3>Apa itu PPLG?</h3>
+                <p>
+                    Jurusan yang mempelajari cara merancang, membuat, menguji, dan mengembangkan perangkat lunak, aplikasi, website, dan gim. Menjadi kreator teknologi yang membangun solusi digital untuk masa depan!
+                </p>
+            </div>
+            <div class="career-card" data-aos="fade-left" data-aos-duration="1000">
+                <h3>Peluang Karir</h3>
+                <ul>
+                    <li><i class="fa-solid fa-code" style="color: var(--cyan)"></i> Web Developer</li>
+                    <li><i class="fa-solid fa-mobile-screen-button" style="color: var(--purple)"></i> Mobile Developer</li>
+                    <li><i class="fa-solid fa-gamepad" style="color: #ecc94b"></i> Game Developer</li>
+                    <li><i class="fa-solid fa-palette" style="color: #f687b3"></i> UI/UX Designer</li>
+                    <li><i class="fa-solid fa-chart-simple" style="color: #48bb78"></i> Data Analyst</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="fase-section">
+            <div class="fase-header" data-aos="fade-up">
+                <h3>FASE E (KELAS X)</h3>
+                <span>Membangun Dasar, Mengenal Dunia Teknologi</span>
+            </div>
+            <div class="subject-grid">
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="100">
+                    <h4>1. Sistem Komputer</h4>
+                    <p>Memahami komponen komputer, sistem operasi, dan cara kerja komputer secara menyeluruh.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4>2. Jaringan Komputer Dasar</h4>
+                    <p>Memahami konsep dasar arsitektur jaringan lokal hingga internet dan konfigurasi sederhana.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="300">
+                    <h4>3. Algoritma & Pemrograman</h4>
+                    <p>Membangun logika berpikir komputasional, pembuatan struktur flowchart, dan skrip kode dasar.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="400">
+                    <h4>4. Basis Data Dasar</h4>
+                    <p>Mengenal konsep penyimpanan data terstruktur, pembuatan tabel relasional, dan query manipulasi data.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="500">
+                    <h4>5. UI/UX Dasar</h4>
+                    <p>Memahami prinsip-prinsip utama desain antarmuka aplikasi yang intuitif, menarik, dan berpusat pada pengguna.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="600">
+                    <h4>6. Projek Dasar PPLG</h4>
+                    <p>Mengintegrasikan semua pondasi ilmu ke dalam pembuatan aplikasi nyata sederhana dari awal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fase-section">
+            <div class="fase-header fase-f" data-aos="fade-up">
+                <h3>FASE F (KELAS XI - XII)</h3>
+                <span>Menguasai Keahlian, Membangun Solusi Nyata</span>
+            </div>
+            <div class="subject-grid fase-f-grid">
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="50">
+                    <h4>1. Pemrograman Lanjut</h4>
+                    <p>Menerapkan paradigma Object-Oriented Programming (OOP) dan struktur data kompleks pada aplikasi.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="100">
+                    <h4>2. Pemrograman Web</h4>
+                    <p>Membangun platform web dinamis, responsif, berkecepatan tinggi, dan terhubung dengan peladen database.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="150">
+                    <h4>3. Pemrograman Mobile</h4>
+                    <p>Mengembangkan aplikasi mobile native maupun cross-platform yang kaya fitur untuk perangkat Android.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4>4. Basis Data Lanjut</h4>
+                    <p>Merancang arsitektur database berskala besar, optimasi index query, dan manajemen penyimpanan modern.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="250">
+                    <h4>5. Rekayasa Perangkat Lunak</h4>
+                    <p>Menganalisis kebutuhan sistem perangkat lunak, penyusunan dokumentasi teknis, serta implementasi siklus hidup SDLC.</p>
+                </div>
+                <div class="subject-card" data-aos="fade-up" data-aos-delay="300">
+                    <h4>6. UI/UX Design</h4>
+                    <p>Merancang pengalaman digital komprehensif, riset alur user, hingga pembuatan high-fidelity interactive prototype.</p>
+                </div>
+            </div>
+        </section>
+
+        <h2 data-aos="fade-up">Fasilitas & Pendukung Pembelajaran</h2>
+        <section class="ekosistem-grid">
+            <div class="eko-card" data-aos="flip-left" data-aos-delay="100">
+                <h3>1. Sarana & Hardware</h3>
+                <p>Akses spesifikasi perangkat workstation tangguh serta lingkungan lab berteknologi tinggi yang nyaman.</p>
+            </div>
+            <div class="eko-card" data-aos="flip-left" data-aos-delay="300">
+                <h3>2. Teaching Factory (TEFA)</h3>
+                <p>Simulasi alur kerja profesional industri dengan mengerjakan langsung proyek software nyata milik klien bisnis.</p>
+            </div>
+            <div class="eko-card" data-aos="flip-left" data-aos-delay="500">
+                <h3>3. Kerja Sama DUDI</h3>
+                <p>Program kurikulum khusus yang diselaraskan langsung oleh industri teknologi terkemuka dan startup nasional.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="container-tombol">
+        <a href="index.html" class="btn-connect">Selanjutnya <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+    </div>
+
+    <footer class="footer-banner" data-aos="fade-up">
+        <div class="container">
+            <p>"Fasilitas yang baik menciptakan pembelajaran yang bermakna."</p>
+            <p style="margin-top: 15px; color: var(--cyan)"><strong>PPLG — Kodemu, Kreativitasmu, Masa Depanmu!</strong></p>
+        </div>
+    </footer>
+
+    <a href="coba2.html" class="btn-home-fixed" title="Kembali ke Beranda">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800
+        });
+    </script>
+</body>
+</html>

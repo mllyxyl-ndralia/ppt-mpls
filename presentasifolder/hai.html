@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi MPLS PPLG - Dari Pengguna Menjadi Pencipta Solusi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <style>
+        /* --- DESIGN SYSTEM: CYBERPUNK PREMIUM --- */
+        :root {
+            --bg-space: #030712;
+            --card-dark: #0b1528;
+            --cyber-cyan: #00f0ff;
+            --cyber-blue: #0077b6;
+            --neon-glow: #90e0ef;
+            --climax-red: #ff0055;
+            --text-main: #f3f4f6;
+            --text-sub: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-space);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- SLIDE MANAGER FRAMEWORK --- */
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #030712 100%);
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1) translateY(0);
+        }
+
+        /* --- ANIMATED BG PARTICLES --- */
+        .bg-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 1;
+            pointer-events: none;
+            animation: floatingGlow 10s infinite alternate;
+        }
+
+        @keyframes floatingGlow {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            100% { transform: translate(10%, 20%) scale(1.2); }
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* --- TYPOGRAPHY & GRADIENTS --- */
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 30%, var(--cyber-cyan) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            color: var(--cyber-cyan);
+            border-left: 5px solid var(--cyber-cyan);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .slide p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+
+        .time-badge {
+            align-self: flex-start;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--cyber-cyan);
+            color: var(--cyber-cyan);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* --- INTERACTIVE GRID LAYOUTS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .interactive-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2);
+        }
+
+        .interactive-card i {
+            font-size: 2.5rem;
+            color: var(--cyber-cyan);
+            margin-bottom: 20px;
+        }
+
+        /* --- ANIMATED ROADMAP / TIMELINE --- */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            z-index: 1;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            height: 4px;
+            background: var(--cyber-cyan);
+            z-index: 2;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .slide.active .timeline-progress {
+            width: 100%;
+        }
+
+        .timeline-node {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            width: 20%;
+        }
+
+        .node-circle {
+            width: 54px;
+            height: 54px;
+            background: var(--card-dark);
+            border: 3px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            color: var(--text-main);
+            transition: all 0.5s ease;
+        }
+
+        .slide.active .timeline-node:nth-child(2) .node-circle { border-color: var(--cyber-cyan); box-shadow: 0 0 15px var(--cyber-cyan); color: var(--cyber-cyan); }
+
+        /* --- BULLET POINTS BADGES --- */
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 18px;
+            border-radius: 8px;
+            border-left: 3px solid var(--cyber-cyan);
+            font-size: 1rem;
+        }
+
+        /* --- EXTRA SLIDE CLIMAX EFFECT --- */
+        .climax-slide {
+            background: #000000 !important;
+        }
+
+        .climax-text-1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease 0.3s;
+        }
+
+        .climax-text-2 {
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--climax-red);
+            text-shadow: 0 0 30px rgba(255, 0, 85, 0.6);
+            text-align: center;
+            opacity: 0;
+            transform: scale(1.2);
+            transition: all 0.5s ease 1s; /* delay untuk efek diam 2 detik saat presentasi */
+        }
+
+        .active.climax-slide .climax-text-1 { opacity: 1; transform: scale(1); }
+        .active.climax-slide .climax-text-2 { opacity: 1; transform: scale(1); }
+
+        /* --- CONTROLLER NAVIGASI FIXED --- */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-btn:hover {
+            background: var(--cyber-cyan);
+            color: var(--bg-space);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 15px var(--cyber-cyan);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--text-sub);
+            font-weight: bold;
+        }
+
+        .progress-bar-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--cyber-blue), var(--cyber-cyan));
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .btn-home-fixed {
+            position: fixed;
+            bottom: 800px;
+            right: 50px;
+            left: 10px;
+            width: 65px; /* Diperbesar dari 50px ke 65px */
+            height: 65px; /* Diperbesar dari 50px ke 65px */
+            background: #ffffff; /* Mengubah dasar menjadi warna putih */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a; /* Mengubah warna ikon rumah menjadi gelap agar kontras dengan warna putih */
+            font-size: 1.75rem; /* Ukuran ikon rumah diperbesar dari 1.30rem ke 1.75rem */
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            z-index: 99;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home-fixed:hover {
+            background: #f8fafc; /* Efek hover putih sedikit abu-abu terang */
+            transform: translateY(-5px) scale(1.05);
+            color: #2563eb; /* Saat di-hover, warna ikon berubah menjadi biru modern */
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar-top" id="topProgress"></div>
+    <div class="bg-glow"></div>
+
+    <div class="presentation-container">
+
+        <div class="slide active" id="slide-1">
+            <div class="slide-content" style="text-align: center; align-items: center;">
+                <div class="time-badge"><i class="fa-solid fa-rocket"></i> JURUSAN PPLG</div>
+                <h1 class="gradient-text" style="font-size: 4.5rem;">"Dari Pengguna Teknologi<br>Menjadi Pencipta Solusi"</h1>
+                <p style="max-width: 700px; font-size: 1.4rem;">Demo Eksklusif Orientasi Siswa Baru MPLG. Siapkan Diri Menghasilkan Karya Nyata untuk Dunia Digital.</p>
+                <div class="badge-list" style="justify-content: center; margin-top: 20px;">
+                    <span class="tech-badge">Zero Coding Skill Welcome</span>
+                    <span class="tech-badge">Real Project Built</span>
+                    <span class="tech-badge">Client Oriented Product</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-clock"></i> 1. OPENING (1 MENIT)</div>
+                <h2>Selamat Datang Calon Siswa Baru SMK!</h2>
+                <div class="grid-2">
+                    <div>
+                        <p style="font-size: 1.5rem; color: #fff; margin-bottom: 20px;">"Hari ini kami tidak akan menjelaskan teori berbelit tentang komputer..."</p>
+                        <p>Kami ingin memperlihatkan sebuah petualangan seru. Perjalanan transformatif bagaimana siswa biasa merintis karir dari nol hingga sukses membangun sistem aplikasi komersial untuk pelanggan riil!</p>
+                    </div>
+                    <div class="grid-3" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="interactive-card" style="padding: 20px;"><i class="fa-solid fa-code" style="font-size:1.5rem;"></i><p style="font-size:1rem;">Coding & Web</p></div>
+                        <div class="interactive-card" style="padding: 20px;"><i class="fa-solid fa-mobile-button" style="font-size:1.5rem;"></i><p style="font-size:1rem;">Android Dev</p></div>
+                        <div class="interactive-card" style="padding: 20px;"><i class="fa-solid fa-gamepad" style="font-size:1.5rem;"></i><p style="font-size:1rem;">Gim Logic</p></div>
+                        <div class="interactive-card" style="padding: 20px;"><i class="fa-solid fa-database" style="font-size:1.5rem;"></i><p style="font-size:1rem;">Database</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-clock"></i> 2. APA ITU PPLG? (2 MENIT)</div>
+                <h2>Transformasikan Peranmu Sekarang!</h2>
+                <p>Coba jawab secara jujur interaksi digital harian berikut ini:</p>
+                <div class="grid-3">
+                    <div class="interactive-card">
+                        <i class="fa-solid fa-display"></i>
+                        <h3>Siapa Pengguna HP?</h3>
+                        <p style="margin-top: 10px;">Setiap hari scrolling sosmed dan melihat visual modern app.</p>
+                    </div>
+                    <div class="interactive-card">
+                        <i class="fa-solid fa-ghost"></i>
+                        <h3>Siapa Penyuka Game?</h3>
+                        <p style="margin-top: 10px;">Menghabiskan waktu mabar dan menikmati gameplay atraktif.</p>
+                    </div>
+                    <div class="interactive-card">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <h3>Siapa Penciptanya?</h3>
+                        <p style="margin-top: 10px; color: var(--cyber-cyan); font-weight: bold;">Kalian berikutnya di PPLG!</p>
+                    </div>
+                </div>
+                <p style="text-align: center; color: #fff; font-size: 1.4rem; font-weight: bold; margin-top: 15px;">"Semua aplikasi mutakhir tersebut dibuat secara presisi oleh Programmer."</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-gears"></i> MATERI KEAHLIAN</div>
+                <h2>Pondasi Kompetensi Utama di PPLG</h2>
+                <div class="grid-2" style="grid-template-columns: 1.2fr 0.8fr;">
+                    <div class="badge-list" style="gap: 15px;">
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Sistem Komputer</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Jaringan Komputer</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Pemrograman Dasar</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Database Arsitektur</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Pembuatan Website</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Aplikasi Android</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Desain UI / UX</span>
+                        <span class="tech-badge" style="padding: 15px 25px;"><i class="fa-solid fa-check text-cyan"></i> Pengembangan Gim</span>
+                    </div>
+                    <div class="interactive-card" style="background: rgba(0, 119, 182, 0.1); border: 1px dashed var(--cyber-cyan);">
+                        <h3>Metode Praktik</h3>
+                        <p style="font-size: 1rem; margin-top: 10px;">Kurikulum berbasis langsung pada ekosistem industri software terkini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-clock"></i> 3. PERJALANAN SISWA (3 MENIT)</div>
+                <h2>Roadmap Pembelajaran Bertahap (Kelas X)</h2>
+                <p>"Saat melangkah masuk pertama kali, kami nol pemrograman. Kami belajar step-by-step."</p>
+                <div class="timeline">
+                    <div class="timeline-progress"></div>
+                    <div class="timeline-node">
+                        <div class="node-circle">1</div>
+                        <h4>Dasar Komputer</h4>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-circle">2</div>
+                        <h4>Algoritma Logika</h4>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-circle">3</div>
+                        <h4>Website Dasar</h4>
+                    </div>
+                    <div class="timeline-node">
+                        <div class="node-circle">4</div>
+                        <h4>Database</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-laptop-code"></i> HASIL KARYA KELAS XI</div>
+                <h2>Eksperimen Project Internal Awal</h2>
+                <div class="grid-2">
+                    <div class="interactive-card">
+                        <h3 style="color: var(--cyber-cyan);"><i class="fa-solid fa-window-restore"></i> Project 1: Website Profile</h3>
+                        <p style="margin-top: 10px;">Aplikasi profil digital interaktif untuk instansi sekolah ataupun ekosistem sistem informasi dasar internal.</p>
+                    </div>
+                    <div class="interactive-card">
+                        <h3 style="color: var(--cyber-cyan);"><i class="fa-solid fa-desktop"></i> Project 2: Desktop App</h3>
+                        <p style="margin-top: 10px;">Aplikasi kasir penjualan toko retail, manajemen inventaris logistik barang, atau arsip perpustakaan sekolah.</p>
+                    </div>
+                </div>
+                <p style="font-style: italic; text-align: center; font-size: 1.1rem;">"Ini representasi komitmen belajar proses yang kami lakukan sepanjang semester."</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-7">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-clock"></i> 4. LEVEL LANJUT (3 MENIT)</div>
+                <h2>Ekskalasi Keahlian Kelas XI - XII</h2>
+                <p>Setelah dasar dikuasai sepenuhnya, pengerjaan bertransisi ke arah arsitektur kompleks:</p>
+                <div class="grid-3">
+                    <div class="interactive-card" style="border-bottom: 3px solid var(--cyber-cyan);">
+                        <h4>Web Development</h4>
+                        <p style="font-size: 0.95rem; margin-top: 8px;">Framework modern, arsitektur cloud server, dan REST API integrasi.</p>
+                    </div>
+                    <div class="interactive-card" style="border-bottom: 3px solid var(--cyber-cyan);">
+                        <h4>Mobile Apps</h4>
+                        <p style="font-size: 0.95rem; margin-top: 8px;">Membangun sistem aplikasi di smartphone berbasis Android & iOS.</p>
+                    </div>
+                    <div class="interactive-card" style="border-bottom: 3px solid var(--cyber-cyan);">
+                        <h4>Dashboard Admin</h4>
+                        <p style="font-size: 0.95rem; margin-top: 8px;">Sistem kontrol multi-user login, manajemen grafik, dan laporan dinamis.</p>
+                    </div>
+                </div>
+                <p style="text-align: center; color:#fff; font-weight: bold; font-size: 1.3rem;">"Fokus penuh pada fungsionalitas hasil nyata, tanpa rumitnya kode di atas panggung!"</p>
+            </div>
+        </div>
+
+        <div class="slide climax-slide" id="slide-8">
+            <div class="slide-content" style="align-items: center; justify-content: center; gap: 40px;">
+                <div class="time-badge" style="background: rgba(255, 0, 85, 0.2); border-color: var(--climax-red); color: var(--climax-red);"><i class="fa-solid fa-triangle-exclamation"></i> 5. THE CLIMAX SEGMENT</div>
+                <div class="climax-text-1">INI BUKAN TUGAS SEKOLAH</div>
+                <div class="climax-text-2">INI DIGUNAKAN PELANGGAN!</div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-9">
+            <div class="slide-content">
+                <div class="time-badge"><i class="fa-solid fa-award"></i> ETALASE PRODUK UTAMA</div>
+                <h2>Aplikasi Komersial Buatan Siswa</h2>
+                <div class="grid-2">
+                    <div class="interactive-card">
+                        <h3>Sistem Komersial Aktif:</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px; display:flex; flex-direction:column; gap:10px;">
+                            <li><strong style="color:var(--cyber-cyan)">QMS Pickup Delivery:</strong> Pelacak kurir ekspedisi logistik.</li>
+                            <li><strong style="color:var(--cyber-cyan)">Sistem Manajemen Laundry:</strong> Kasir operasional harian otomatis.</li>
+                            <li><strong style="color:var(--cyber-cyan)">Sistem Penjualan Retail:</strong> Transaksi kasir retail modern.</li>
+                        </ul>
+                    </div>
+                    <div class="interactive-card" style="background: rgba(0, 240, 255, 0.02);">
+                        <h3>Cakupan Validasi:</h3>
+                        <p style="font-size: 1rem; margin-top: 10px; line-height: 1.8;">Menampilkan otentifikasi fungsional interface riil: modul Login User, Dashboard kontrol bisnis, grafik data transaksi penjualan keuangan, lampiran data serta visual testimoni riil pelanggan pengguna produk.</p>
+                    </div>
+                </div>
+                <h3 style="text-align: center; font-size: 1.3rem; font-weight: normal; color: var(--text-sub);">
+                    "Aplikasi ini dibangun murni oleh <span style="color: var(--cyber-cyan); font-weight: bold;">Siswa SMK</span>, bukan perusahaan software profesional!"
+                </h3>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-10">
+            <div class="slide-content" style="text-align: center; align-items: center;">
+                <div class="time-badge"><i class="fa-solid fa-clock"></i> 6. PENUTUP (2 MENIT)</div>
+                <h2>Transformasi Menuju Masa Depan Digital</h2>
+                <div class="grid-2" style="width: 100%; margin-top: 20px;">
+                    <div class="interactive-card">
+                        <span style="color: var(--text-sub); font-size: 1.1rem;">Siswa Kelas XI</span>
+                        <h2 style="border: none; padding: 0; margin-top: 10px; font-size: 1.8rem; color: #fff;">"Dulu kami hanya pengguna teknologi..."</h2>
+                    </div>
+                    <div class="interactive-card" style="border-color: var(--cyber-cyan);">
+                        <span style="color: var(--cyber-cyan); font-size: 1.1rem;">Siswa Kelas XII</span>
+                        <h2 style="border: none; padding: 0; margin-top: 10px; font-size: 1.8rem; color: var(--cyber-cyan);">"...Sekarang kami mampu membuat teknologi!"</h2>
+                    </div>
+                </div>
+                <div class="badge-list" style="justify-content: center; margin-top: 30px;">
+                    <span class="tech-badge">Masuk PPLG</span> <i class="fa-solid fa-arrow-right" style="margin-top:10px;"></i>
+                    <span class="tech-badge">Belajar Kreatif</span> <i class="fa-solid fa-arrow-right" style="margin-top:10px;"></i>
+                    <span class="tech-badge">Bangun Project</span> <i class="fa-solid fa-arrow-right" style="margin-top:10px;"></i>
+                    <span class="tech-badge">PKL Industri</span> <i class="fa-solid fa-arrow-right" style="margin-top:10px;"></i>
+                    <span class="tech-badge">Produk Digunakan Pelanggan</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-11" style="background: radial-gradient(circle, #001f3f 0%, #030712 100%);">
+            <div class="slide-content" style="text-align: center; align-items: center; gap: 35px;">
+                <h1 class="gradient-text" style="font-size: 3.8rem; font-weight: 800;">"PPLG Adalah Tempat<br>Ide Menjadi Karya"</h1>
+                <p style="max-width: 800px; font-size: 1.5rem; color: var(--text-main);">
+                    "Karya menjadi solusi, dan solusi menjadi manfaat nyata bagi masyarakat."
+                </p>
+                <h2 style="border: none; padding: 0; color: var(--cyber-cyan); font-size: 2.5rem; letter-spacing: 4px; margin-top: 20px;">TERIMA KASIH</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <span class="slide-counter" id="slideCounter">1 / 11</span>
+        <button class="nav-btn" id="prevBtn" title="Slide Sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-btn" id="nextBtn" title="Slide Selanjutnya (Bisa gunakan Spasi / Panah Kanan)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <a href="coba2.html" class="btn-home-fixed" title="Kembali ke Beranda">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        const topProgress = document.getElementById('topProgress');
+        
+        let currentSlideIndex = 0;
+        const totalSlides = slides.length;
+
+        function updateSlidePosition() {
+            // Hapus kelas active dari seluruh slide
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Aktifkan slide saat ini
+            slides[currentSlideIndex].classList.add('active');
+            
+            // Update UI Kontrol Counter & Progress Bar Atas
+            slideCounter.textContent = `${currentSlideIndex + 1} / ${totalSlides}`;
+            const progressPercent = ((currentSlideIndex + 1) / totalSlides) * 100;
+            topProgress.style.width = `${progressPercent}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                updateSlidePosition();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateSlidePosition();
+            }
+        }
+
+        // Event Listener Tombol Navigasi Klik
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Event Listener Navigasi Menggunakan Keyboard (Sangat berguna saat presentasi di panggung)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Inisialisasi Progress Bar Atas di Awal Rilis
+        updateSlidePosition();
+    </script>
+</body>
+</html>
