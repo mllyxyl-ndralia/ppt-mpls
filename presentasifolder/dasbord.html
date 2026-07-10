@@ -140,46 +140,13 @@
             max-width: 600px;
         }
 
-        /* .hero-banner {
-            width: 100%;
-            height: 35vh;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: linear-gradient(rgba(10, 17, 40, 0.6), rgba(16, 31, 66, 0.85)), 
-                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 40px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        }
-
-        .hero-banner h1 {
-        
-            font-size: 2.5rem;
-            color: var(--cyber-blue);
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .hero-banner p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            max-width: 600px;
-        } */
-        /* --- GRID MATERI / KARTU KONTEN ---
+        /* --- GRID MATERI & PROFESI --- */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        } */
-         .tech-grid {
-            display: grid;
-            /* Mengatur kolom menjadi 6 kolom di layar lebar dengan ukuran minimal kartu 160px */
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px; /* Jarak dikecilkan agar terlihat rapi dalam 6 kolom */
-            
-}
+            /* Kolom otomatis menyesuaikan lebar, muat hingga 6 kolom di monitor PC */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px; 
+        }
 
         .tech-card {
             background-color: var(--card-bg);
@@ -187,6 +154,9 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             transition: all 0.3s ease;
         }
 
@@ -198,28 +168,32 @@
 
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 150px;
             background-size: cover;
             background-position: center;
         }
 
         .card-body {
-            padding: 25px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .card-body h2 {
             color: var(--cyber-blue);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .card-body p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
             margin-bottom: 15px;
         }
 
@@ -227,17 +201,37 @@
         .tech-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
+            margin-top: auto;
         }
 
         .badge {
             background-color: var(--sidebar-bg);
             color: var(--blue-hover);
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+
+        /* --- JUDUL SEPARATOR PROFESI --- */
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--cyber-blue);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            width: 100%;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: linear-gradient(rgba(10, 17, 40, 0.7), rgba(16, 31, 66, 0.9)), 
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
         }
 
         /* --- KONTENER POP-UP LOGO --- */
@@ -286,31 +280,35 @@
             .menu-list { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
             .main-content { margin-left: 0; width: 100%; padding: 20px; }
             .hero-banner { height: auto; padding: 30px 20px; }
+            .tech-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
         }
+
+        /* TOMBOL HOME FLOATING */
         .btn-home-fixed {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            width: 65px; /* Diperbesar dari 50px ke 65px */
-            height: 65px; /* Diperbesar dari 50px ke 65px */
-            background: #ffffff; /* Mengubah dasar menjadi warna putih */
+            width: 65px; 
+            height: 65px; 
+            background: #ffffff; 
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #0f172a; /* Mengubah warna ikon rumah menjadi gelap agar kontras dengan warna putih */
-            font-size: 1.75rem; /* Ukuran ikon rumah diperbesar dari 1.30rem ke 1.75rem */
+            color: #0f172a; 
+            font-size: 1.75rem; 
             text-decoration: none;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             z-index: 99;
             transition: all 0.3s ease;
         }
-           .btn-home-fixed:hover {
-            background: #f8fafc; /* Efek hover putih sedikit abu-abu terang */
+
+        .btn-home-fixed:hover {
+            background: #f8fafc; 
             transform: translateY(-5px) scale(1.05);
-            color: #2563eb; /* Saat di-hover, warna ikon berubah menjadi biru modern */
-                box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+            color: #2563eb; 
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
         }
     </style>
 </head>
@@ -321,11 +319,10 @@
     <aside class="sidebar">
         <div class="brand">Rekayasa Perangkat Lunak <i class="fa-solid fa-code"></i></div>
         <ul class="menu-list">
-             <li class="menu-item"><a href="dasbord.html" class="active"><i class="fa-solid fa-book"></i>materi</a></li>
+            <li class="menu-item"><a href="dasbord.html" class="active"><i class="fa-solid fa-book"></i>materi</a></li>
             <li class="menu-item"><a href="perkenalan.html"><i class="fa-solid fa-user"></i>perkenalan</a></li>
-             <li class="menu-item"><a href="penutup.html"><i class="fa-solid fa-users"></i>penutup</a></li>
-              <li class="menu-item"><a href="index.html" ><i class="fa-solid fa-house"></i>home</a></li>
-  
+            <li class="menu-item"><a href="penutup.html"><i class="fa-solid fa-users"></i>penutup</a></li>
+            <li class="menu-item"><a href="index.html"><i class="fa-solid fa-house"></i>home</a></li>
         </ul>
         <div class="sidebar-footer">
             <p><i class="fa-solid fa-face-grin-wink"></i> PPLG</p>
@@ -337,20 +334,20 @@
         <div class="hero-banner">
             <h1>"Dari Pengguna Teknologi Menjadi Pencipta Solusi"</h1>
             <p>Bukan sekadar mengenalkan mata pelajaran PPLG, tetapi menunjukkan kepada siswa baru bahwa: <br>
-•	PPLG adalah jurusan yang menghasilkan karya nyata. <br>
-•	Siswa masuk tanpa kemampuan coding pun bisa berkembang. <br>
-•	Hasil pembelajaran dapat menjadi produk yang digunakan pelanggan. <br>
-•	PPLG bukan hanya belajar komputer, tetapi menciptakan solusi digital. <br>
-</p>
+            •   PPLG adalah jurusan yang menghasilkan karya nyata. <br>
+            •   Siswa masuk tanpa kemampuan coding pun bisa berkembang. <br>
+            •   Hasil pembelajaran dapat menjadi produk yang digunakan pelanggan. <br>
+            •   PPLG bukan hanya belajar komputer, tetapi menciptakan solusi digital. <br>
+            </p>
         </div>
 
-        <section id="bahasa">
+        <section id="materi-rpl">
             <div class="tech-grid">
                 <div class="tech-card">
                     <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=600');"></div>
                     <div class="card-body">
                         <h2><i class="fa-solid fa-terminal"></i> Bahasa Pemrograman</h2>
-                        <p>Bahasa Pemrograman digunakan untuk logika komputer agar komputer dapat memahami dam menjalankan kode yang kita perintahkan dan membangun pondasi aplikasi yang terstruktur.</p>
+                        <p>Bahasa Pemrograman digunakan untuk logika komputer agar komputer dapat memahami dan menjalankan kode yang kita perintahkan serta membangun pondasi aplikasi yang terstruktur.</p>
                         <div class="tech-badges">
                             <span class="badge">JavaScript</span>
                             <span class="badge">Python</span>
@@ -361,7 +358,7 @@
                     </div>
                 </div>
 
-                <div id="framework" class="tech-card">
+                <div class="tech-card">
                     <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600');"></div>
                     <div class="card-body">
                         <h2><i class="fa-solid fa-layer-group"></i> Framework & Library</h2>
@@ -377,7 +374,7 @@
                     </div>
                 </div>
 
-                <div id="tools" class="tech-card">
+                <div class="tech-card">
                     <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600');"></div>
                     <div class="card-body">
                         <h2><i class="fa-solid fa-laptop-code"></i> Lingkungan & Alat Kerja</h2>
@@ -392,77 +389,102 @@
                 </div>
             </div>
         </section>
-        <p style="  font-size: 3.5rem;
-            color: var(--cyber-blue);
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-             width: 100%;
-            height: 35vh;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: linear-gradient(rgba(10, 17, 40, 0.6), rgba(16, 31, 66, 0.85)), 
-                        url('ChatGPT\ Image\ 10\ Jul\ 2026\,\ 22.17.26.png') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 40px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-           ">PROFESI DIDUNIA RPL</p>
-        <section id="bahasa">
+
+        <div class="section-title">
+            <i class="fa-solid fa-briefcase"></i> PROFESI DI DUNIA RPL
+        </div>
+
+        <section id="profesi-rpl">
             <div class="tech-grid">
+                
                 <div class="tech-card">
-                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=600');"></div>
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=400');"></div>
                     <div class="card-body">
-                        <h2><i class="fa-solid fa-terminal"></i>FRONTEND</h2>
-                        <p>Bahasa Pemrograman digunakan untuk logika komputer agar komputer dapat memahami dam menjalankan kode yang kita perintahkan dan membangun pondasi aplikasi yang terstruktur.</p>
+                        <h2><i class="fa-solid fa-code"></i> Frontend Dev</h2>
+                        <p>Fokus membangun tampilan luar web atau aplikasi yang berinteraksi langsung dan dilihat langsung oleh pengguna (User Interface).</p>
                         <div class="tech-badges">
-                            <span class="badge">JavaScript</span>
-                            <span class="badge">Python</span>
-                            <span class="badge">Java</span>
-                            <span class="badge">Go</span>
-                            <span class="badge">PHP</span>
+                            <span class="badge">HTML/CSS</span>
+                            <span class="badge">React</span>
+                            <span class="badge">Vue</span>
                         </div>
                     </div>
                 </div>
 
-                <div id="framework" class="tech-card">
-                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600');"></div>
+                <div class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400');"></div>
                     <div class="card-body">
-                        <h2><i class="fa-solid fa-layer-group"></i> Framework & Library</h2>
-                        <p>Kerangka kerja siap pakai yang membantu developer mempercepat proses pengembangan sistem tanpa perlu menulis kode dari nol.</p>
+                        <h2><i class="fa-solid fa-server"></i> Backend Dev</h2>
+                        <p>Mengelola bagian server, sistem keamanan, logika bisnis, serta database di balik layar agar sistem aplikasi berjalan lancar.</p>
                         <div class="tech-badges">
-                            <span class="badge">React.js</span>
                             <span class="badge">Node.js</span>
                             <span class="badge">Laravel</span>
-                            <span class="badge">Django</span>
-                            <span class="badge">Express</span>
-                            <span class="badge">Bun</span>
+                            <span class="badge">Database</span>
                         </div>
                     </div>
                 </div>
 
-                <div id="tools" class="tech-card">
-                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600');"></div>
+                <div class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=400');"></div>
                     <div class="card-body">
-                        <h2><i class="fa-solid fa-laptop-code"></i> Lingkungan & Alat Kerja</h2>
-                        <p>Infrastruktur pendukung yang digunakan untuk mengelola versi kode, pelacakan bug, kontainerisasi, dan deployment aplikasi.</p>
+                        <h2><i class="fa-solid fa-mobile-screen-button"></i> Mobile Dev</h2>
+                        <p>Spesialis dalam merancang dan mengembangkan aplikasi pintar untuk perangkat berbasis mobile seperti Android maupun iOS.</p>
                         <div class="tech-badges">
-                            <span class="badge">Git & GitHub</span>
-                            <span class="badge">Docker</span>
-                            <span class="badge">VS Code</span>
-                            <span class="badge">MySQL / PostgreSQL</span>
+                            <span class="badge">Flutter</span>
+                            <span class="badge">Kotlin</span>
+                            <span class="badge">Swift</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=400');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-compass-drafting"></i> UI/UX Designer</h2>
+                        <p>Merancang alur struktur navigasi dan keindahan tampilan produk digital agar pengguna merasa nyaman dan mudah menggunakannya.</p>
+                        <div class="tech-badges">
+                            <span class="badge">Figma</span>
+                            <span class="badge">Wireframe</span>
+                            <span class="badge">Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=400');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-bug-slash"></i> QA Engineer</h2>
+                        <p>Bertanggung jawab menguji kelayakan sistem, mencari celah bug/error, dan memastikan kualitas produk sudah sesuai standar sebelum dirilis.</p>
+                        <div class="tech-badges">
+                            <span class="badge">Selenium</span>
+                            <span class="badge">Cypress</span>
+                            <span class="badge">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1618401471353-b98aedd07871?q=80&w=400');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-cloud"></i> DevOps Eng</h2>
+                        <p>Menjembatani tim developer dengan tim operasional untuk mengelola server cloud serta otomatisasi deployment aplikasi.</p>
+                        <div class="tech-badges">
+                            <span class="badge">Docker</span>
+                            <span class="badge">AWS Cloud</span>
+                            <span class="badge">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
     </main>
+
     <a href="index.html" class="btn-home-fixed" title="Kembali ke Beranda">
         <i class="fa-solid fa-house"></i>
     </a>
+
     <script>
-        // Navigasi aktif di sidebar sesuai scroll / klik internal target
         const links = document.querySelectorAll('.menu-item a');
         links.forEach(link => {
             link.addEventListener('click', function() {
@@ -471,7 +493,6 @@
             });
         });
 
-        // --- DATA BAHASA PEMROGRAMAN & WARNA ASLINYA ---
         const techLogos = [
             { icon: 'fa-brands fa-js', color: '#f7df1e', shadow: 'rgba(247, 223, 30, 0.5)' },       
             { icon: 'fa-brands fa-python', color: '#3776ab', shadow: 'rgba(55, 118, 171, 0.5)' },   
@@ -482,66 +503,37 @@
             { icon: 'fa-brands fa-java', color: '#007396', shadow: 'rgba(0, 115, 150, 0.5)' },      
             { icon: 'fa-brands fa-php', color: '#777bb4', shadow: 'rgba(119, 123, 180, 0.5)' },     
             { icon: 'fa-brands fa-golang', color: '#00add8', shadow: 'rgba(0, 173, 216, 0.5)' },
-            { icon: 'fa-brands fa-js', color: '#f7df1e', shadow: 'rgba(247, 223, 30, 0.5)' },       // JavaScript (Kuning)
-            { icon: 'fa-brands fa-python', color: '#3776ab', shadow: 'rgba(55, 118, 171, 0.5)' },   // Python (Biru Tua)
-            { icon: 'fa-brands fa-html5', color: '#e34c26', shadow: 'rgba(227, 76, 38, 0.5)' },     // HTML5 (Oranye)
-            { icon: 'fa-brands fa-css3-alt', color: '#264de4', shadow: 'rgba(38, 77, 228, 0.5)' },   // CSS3 (Biru)
-            { icon: 'fa-brands fa-react', color: '#61dafb', shadow: 'rgba(97, 218, 251, 0.5)' },    // React (Cyan/Biru Muda)
-            { icon: 'fa-brands fa-node-js', color: '#339933', shadow: 'rgba(51, 153, 51, 0.5)' },   // Node.js (Hijau)
-            { icon: 'fa-brands fa-java', color: '#007396', shadow: 'rgba(0, 115, 150, 0.5)' },      // Java (Biru Air)
-            { icon: 'fa-brands fa-php', color: '#777bb4', shadow: 'rgba(119, 123, 180, 0.5)' },     // PHP (Ungu Pastel)
-            { icon: 'fa-brands fa-golang', color: '#00add8', shadow: 'rgba(0, 173, 216, 0.5)' },    // Go/Golang (Cyan Cerah)
-            { icon: 'fa-brands fa-rust', color: '#cea47e', shadow: 'rgba(206, 164, 126, 0.5)' },     // Rust (Cokelat Tembaga)
-            { icon: 'fa-brands fa-swift', color: '#f05138', shadow: 'rgba(240, 81, 56, 0.5)' },      // Swift (Merah Oranye)
-            { icon: 'fa-brands fa-git-alt', color: '#f05032', shadow: 'rgba(240, 80, 50, 0.5)' },    // Git (Merah Bata)
-            { icon: 'fa-brands fa-docker', color: '#2496ed', shadow: 'rgba(36, 150, 237, 0.5)' },    // Docker (Biru Cerah)
-            { icon: 'fa-brands fa-laravel', color: '#ff2d20', shadow: 'rgba(255, 45, 32, 0.5)' },    // Laravel (Merah Terang)
-            { icon: 'fa-brands fa-vuejs', color: '#41b883', shadow: 'rgba(65, 184, 131, 0.5)' },     // Vue.js (Hijau Mint)
-            { icon: 'fa-brands fa-angular', color: '#dd0031', shadow: 'rgba(221, 0, 49, 0.5)' },    // Angular (Merah Tua)
-            { icon: 'fa-brands fa-sass', color: '#cc6699', shadow: 'rgba(204, 102, 153, 0.5)' },      // Sass (Merah Muda/Pink)
-            // --- FRONTEND FRAMEWORKS & LIBRARIES ---
-            { icon: 'fa-brands fa-react', color: '#61dafb', shadow: 'rgba(97, 218, 251, 0.5)' },    // React (Cyan)
-            { icon: 'fa-brands fa-vuejs', color: '#41b883', shadow: 'rgba(65, 184, 131, 0.5)' },     // Vue.js (Hijau Mint)
-            { icon: 'fa-brands fa-angular', color: '#dd0031', shadow: 'rgba(221, 0, 49, 0.5)' },    // Angular (Merah Tua)
-            { icon: 'fa-brands fa-bootstrap', color: '#7952b3', shadow: 'rgba(121, 82, 179, 0.5)' }, // Bootstrap (Ungu Tua)
-            { icon: 'fa-brands fa-sass', color: '#cc6699', shadow: 'rgba(204, 102, 153, 0.5)' },      // Sass (Pink)
-
-            // --- BACKEND RUNTIME & FRAMEWORKS ---
-            { icon: 'fa-brands fa-node-js', color: '#339933', shadow: 'rgba(51, 153, 51, 0.5)' },   // Node.js (Hijau)
-            { icon: 'fa-brands fa-laravel', color: '#ff2d20', shadow: 'rgba(255, 45, 32, 0.5)' },    // Laravel (Merah Terang)
-            { icon: 'fa-brands fa-symfony', color: '#ffffff', shadow: 'rgba(255, 255, 255, 0.5)' },  // Symfony (Putih)
-
-            // --- DATABASE & DEVOPS TOOLS ---
-            { icon: 'fa-solid fa-database', color: '#00758f', shadow: 'rgba(0, 117, 143, 0.5)' },   // SQL Database Generic (Biru Laut)
-            { icon: 'fa-brands fa-git-alt', color: '#f05032', shadow: 'rgba(240, 80, 50, 0.5)' },    // Git (Merah Bata)
-            { icon: 'fa-brands fa-github', color: '#ffffff', shadow: 'rgba(255, 255, 255, 0.3)' },   // GitHub (Putih/Abu)
-            { icon: 'fa-brands fa-docker', color: '#2496ed', shadow: 'rgba(36, 150, 237, 0.5)' },    // Docker (Biru Muda)
-            { icon: 'fa-brands fa-aws', color: '#ff9900', shadow: 'rgba(255, 153, 0, 0.5)' },       // AWS (Oranye Kuning)
-
-            // --- MOBILE & MULTIPLATFORM ---
-            { icon: 'fa-brands fa-android', color: '#3ddc84', shadow: 'rgba(61, 220, 132, 0.5)' },   // Android (Hijau Robot)
-            { icon: 'fa-brands fa-apple', color: '#a3aaae', shadow: 'rgba(163, 170, 174, 0.5)' },     // Apple/iOS (Silver)
-            { icon: 'fa-solid fa-laptop-code', color: '#ffff', shadow: 'rgba(36, 150, 237, 0.5)' }     // Apple/iOS (Silver)
+            { icon: 'fa-brands fa-rust', color: '#cea47e', shadow: 'rgba(206, 164, 126, 0.5)' },    
+            { icon: 'fa-brands fa-swift', color: '#f05138', shadow: 'rgba(240, 81, 56, 0.5)' },      
+            { icon: 'fa-brands fa-git-alt', color: '#f05032', shadow: 'rgba(240, 80, 50, 0.5)' },    
+            { icon: 'fa-brands fa-docker', color: '#2496ed', shadow: 'rgba(36, 150, 237, 0.5)' },    
+            { icon: 'fa-brands fa-laravel', color: '#ff2d20', shadow: 'rgba(255, 45, 32, 0.5)' },    
+            { icon: 'fa-brands fa-vuejs', color: '#41b883', shadow: 'rgba(65, 184, 131, 0.5)' },     
+            { icon: 'fa-brands fa-angular', color: '#dd0031', shadow: 'rgba(221, 0, 49, 0.5)' },    
+            { icon: 'fa-brands fa-bootstrap', color: '#7952b3', shadow: 'rgba(121, 82, 179, 0.5)' }, 
+            { icon: 'fa-solid fa-database', color: '#00758f', shadow: 'rgba(0, 117, 143, 0.5)' },   
+            { icon: 'fa-brands fa-github', color: '#ffffff', shadow: 'rgba(255, 255, 255, 0.3)' },   
+            { icon: 'fa-brands fa-aws', color: '#ff9900', shadow: 'rgba(255, 153, 0, 0.5)' },       
+            { icon: 'fa-brands fa-android', color: '#3ddc84', shadow: 'rgba(61, 220, 132, 0.5)' },   
+            { icon: 'fa-brands fa-apple', color: '#a3aaae', shadow: 'rgba(163, 170, 174, 0.5)' }
         ];
-
-            
 
         function createPopUpLogo() {
             const container = document.getElementById('popupContainer');
+            if(!container) return;
             const icon = document.createElement('i');
-            
             const selectedTech = techLogos[Math.floor(Math.random() * techLogos.length)];
             
             icon.className = `popup-logo ${selectedTech.icon}`;
             icon.style.color = selectedTech.color;
             icon.style.filter = `drop-shadow(0 0 15px ${selectedTech.shadow})`;
             
-            const randomX = Math.random() * 90 + 10; 
-            const randomY = Math.random() * 70+ 20; 
+            const randomX = Math.random() * 90 + 5; 
+            const randomY = Math.random() * 70 + 15; 
             icon.style.left = `${randomX}vw`;
             icon.style.top = `${randomY}vh`;
             
-            const randomSize = Math.random() * 3 + 3; 
+            const randomSize = Math.random() * 2 + 2; 
             icon.style.fontSize = `${randomSize}rem`;
 
             container.appendChild(icon);
@@ -551,10 +543,9 @@
             }, 1800);
         }
 
-        // Jalankan animasi pop-up beruntun saat web dibuka
         window.addEventListener('DOMContentLoaded', () => {
             let count = 0;
-            const maxLogos = 60; 
+            const maxLogos = 40; 
             const interval = setInterval(() => {
                 createPopUpLogo();
                 count++;
