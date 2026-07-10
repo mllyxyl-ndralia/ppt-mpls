@@ -140,12 +140,19 @@
             max-width: 600px;
         }
 
-        /* --- GRID MATERI / KARTU KONTEN --- */
+        /* --- GRID MATERI / KARTU KONTEN ---
         .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-        }
+        } */
+         .tech-grid {
+            display: grid;
+            /* Mengatur kolom menjadi 6 kolom di layar lebar dengan ukuran minimal kartu 160px */
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px; /* Jarak dikecilkan agar terlihat rapi dalam 6 kolom */
+            
+}
 
         .tech-card {
             background-color: var(--card-bg);
@@ -310,6 +317,54 @@
 </p>
         </div>
 
+        <section id="bahasa">
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=600');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-terminal"></i> Bahasa Pemrograman</h2>
+                        <p>Bahasa Pemrograman digunakan untuk logika komputer agar komputer dapat memahami dam menjalankan kode yang kita perintahkan dan membangun pondasi aplikasi yang terstruktur.</p>
+                        <div class="tech-badges">
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">Java</span>
+                            <span class="badge">Go</span>
+                            <span class="badge">PHP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="framework" class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-layer-group"></i> Framework & Library</h2>
+                        <p>Kerangka kerja siap pakai yang membantu developer mempercepat proses pengembangan sistem tanpa perlu menulis kode dari nol.</p>
+                        <div class="tech-badges">
+                            <span class="badge">React.js</span>
+                            <span class="badge">Node.js</span>
+                            <span class="badge">Laravel</span>
+                            <span class="badge">Django</span>
+                            <span class="badge">Express</span>
+                            <span class="badge">Bun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tools" class="tech-card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-laptop-code"></i> Lingkungan & Alat Kerja</h2>
+                        <p>Infrastruktur pendukung yang digunakan untuk mengelola versi kode, pelacakan bug, kontainerisasi, dan deployment aplikasi.</p>
+                        <div class="tech-badges">
+                            <span class="badge">Git & GitHub</span>
+                            <span class="badge">Docker</span>
+                            <span class="badge">VS Code</span>
+                            <span class="badge">MySQL / PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="bahasa">
             <div class="tech-grid">
                 <div class="tech-card">
