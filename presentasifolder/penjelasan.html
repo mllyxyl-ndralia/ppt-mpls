@@ -18,6 +18,11 @@
             --primary: #3b82f6;
             --purple: #a855f7;
             --cyan: #06b6d4;
+            
+            /* Perbaikan/Penambahan variabel untuk kartu teknologi */
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --cyber-blue: #06b6d4;
         }
 
         * {
@@ -99,7 +104,7 @@
         }
 
         .hero p.subtitle {
-            font-size: 1.6rem;
+            font-size: 3.6rem;
             font-weight: 400;
             color: var(--text-muted);
             margin-bottom: 30px;
@@ -253,6 +258,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
+            margin-bottom: 70px;
         }
 
         .eko-card {
@@ -282,6 +288,96 @@
         .eko-card p {
             color: var(--text-muted);
             font-size: 1rem;
+        }
+
+        /* --- PERBAIKAN MATERI RPL (3 KOLOM) --- */
+        #materi-rpl {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Kolom sejajar ke samping */
+            gap: 30px;
+        }
+
+        .tech-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-body h2 {
+            color: var(--cyber-blue);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+        
+        .card-body h2::after {
+            display: none; /* Menghilangkan garis h2 bawaan agar rapi di kartu */
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* --- BADGES STYLING --- */
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .badge {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: var(--cyan);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .badge:hover {
+            background: var(--cyan);
+            color: var(--bg-dark);
         }
 
         /* --- NAVIGATION BUTTONS --- */
@@ -356,6 +452,11 @@
             .intro-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 3.2rem; }
             .fase-header { flex-direction: column; text-align: center; gap: 10px; }
+            
+            /* Pada layar tablet/HP, kolom tech-grid akan otomatis turun ke bawah (1 kolom) */
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -366,7 +467,7 @@
             <h1>&lt; PPLG /&gt;</h1>
             <p class="subtitle">Pengembangan Perangkat Lunak dan Gim</p>
             <div class="tagline">BELAJAR • BERKARYA • BERINOVASI • BERKOLABORASI</div>
-        
+        </div>
     </header>
 
     <main class="container">
@@ -472,10 +573,59 @@
             </div>
         </section>
 
+        <section id="materi-rpl">
+            <div class="tech-grid">
+                <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=600');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-terminal"></i> Bahasa Pemrograman</h2>
+                        <p>Bahasa Pemrograman digunakan untuk logika komputer agar komputer dapat memahami dan menjalankan kode yang kita perintahkan serta membangun pondasi aplikasi yang terstruktur.</p>
+                        <div class="tech-badges">
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">Java</span>
+                            <span class="badge">Go</span>
+                            <span class="badge">PHP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-layer-group"></i> Framework & Library</h2>
+                        <p>Kerangka kerja siap pakai yang membantu developer mempercepat proses pengembangan sistem tanpa perlu menulis kode dari nol.</p>
+                        <div class="tech-badges">
+                            <span class="badge">React.js</span>
+                            <span class="badge">Node.js</span>
+                            <span class="badge">Laravel</span>
+                            <span class="badge">Django</span>
+                            <span class="badge">Express</span>
+                            <span class="badge">Bun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600');"></div>
+                    <div class="card-body">
+                        <h2><i class="fa-solid fa-laptop-code"></i> Lingkungan & Alat Kerja</h2>
+                        <p>Infrastruktur pendukung yang digunakan untuk mengelola versi kode, pelacakan bug, kontainerisasi, dan deployment aplikasi.</p>
+                        <div class="tech-badges">
+                            <span class="badge">Git & GitHub</span>
+                            <span class="badge">Docker</span>
+                            <span class="badge">VS Code</span>
+                            <span class="badge">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <div class="container-tombol">
-        <a href="" class="btn-connect">Selanjutnya <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+        <a href="dasbord.html" class="btn-connect">Selanjutnya <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
     </div>
 
     <footer class="footer-banner" data-aos="fade-up">
@@ -485,7 +635,7 @@
         </div>
     </footer>
 
-    <a href="" class="btn-home-fixed" title="Kembali ke Beranda">
+    <a href="dasbord.html" class="btn-home-fixed" title="Kembali ke Beranda">
         <i class="fa-solid fa-house"></i>
     </a>
 
